@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>General Knowledge Test</title>
+    <link rel="stylesheet" href="test.css" />
+    <link
+    rel="shortcut icon"
+    href="assets/images/logowbg.jpg"
+    type="image/x-icon"
+  />
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 20px;
+    }
+    
+    .question {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .question h3 {
+        margin-top: 0;
+        color: #333;
+    }
+    
+    .options {
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    .options li {
+        margin-bottom: 10px;
+    }
+</style>
+    </head>
+  </head>
+  <body>
+    <h1 style="text-align: center;">Sample test</h1>
+    
+    <div id="testSection" class="test-section">
+      <!-- Test questions will be loaded here dynamically -->
+    </div>
+
+    <script src="tests.js"></script>
+    <a  href="index.html" style="display: inline-block;"><button style="cursor: pointer;">Back </button></a>
+    <script>
+      document.addEventListener("DOMContentLoaded", startTest);
+    </script>
+  </body>
+</html>

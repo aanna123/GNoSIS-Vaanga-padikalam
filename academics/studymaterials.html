@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Materials</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+    rel="icon"
+    href="assets/images/logowbg.jpg"
+    type="image/png"
+  />
+   
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 30%;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: #333;
+        }
+
+        .card p {
+            color: #666;
+        }
+
+        .card a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #4caf50;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .card a:hover {
+            color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Study Materials</h1>
+        <div class="card-container" id="materialContainer">
+            <!-- Study material cards will be dynamically added here -->
+        </div>
+        <a href="academics.html" style="display: inline-block; text-decoration: none;text-align:center;">
+            <button style="cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 4px; padding: 10px 20px; margin-right: 10px;">
+              Back
+            </button>
+          </a>
+    </div>
+
+    <script>
+        // Define study materials based on the selected class
+        const studyMaterials = {
+            "1": [
+                { subject: "Language", url: "https://drive.google.com/file/d/1GpQTbz5ang9I4BXk-B9B7QFlv80G47JT/view?usp=sharing" },
+                { subject: "English", url: "https://drive.google.com/file/d/1ai5j0SmhlwlzIIDuWt-u5AkeXMhbiqGK/view?usp=sharing" },
+                { subject: "Maths", url: "https://drive.google.com/file/d/1Ck9jZhK60Ngt4tORBjRyHM6tmEAcqton/view?usp=sharing" },
+                { subject: " Environmental Science", url: "https://drive.google.com/file/d/1v_uktcyYYKh4wRRXDHUDmZ3dahXXbumz/view?usp=sharing" },
+            ],
+            "2": [
+                { subject: "Language", url: "https://drive.google.com/open?id=1KCXr5Xt7LL_2kMufaRsX1XLi7--xmmgo" },
+                { subject: "English", url: "https://drive.google.com/open?id=1Jph4E9DBtp7QmCFr-0LDz5ZH9LEuYCix" },
+                { subject: "Maths", url: "https://drive.google.com/open?id=1K0e59qz0yMHny5iI8MFw90C989LSJxON" },
+                { subject: "Environmental Science", url: "https://drive.google.com/open?id=1JsMyehjFiIcnC2977xUvYKyeiYZqu6QF" },
+            ],
+            "11": [
+                { subject: "Biology", url: "biology_material.pdf" },
+                { subject: "Maths", url: "maths_material.pdf" },
+                { subject: "Physics", url: "physics_material.pdf" },
+                { subject: "Chemistry", url: "chemistry_material.pdf" },
+                { subject: "Computer Science", url: "computer_science_material.pdf" }
+            ]
+            // Add more classes and subjects as needed
+        };
+
+        // Get the container to add study material cards
+        const materialContainer = document.getElementById("materialContainer");
+
+        // Check if the selected class has study materials defined
+        const selectedClass = "1"; // Sample class for demonstration
+        if (studyMaterials[selectedClass]) {
+            // Create and add study material cards
+            studyMaterials[selectedClass].forEach(item => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+                card.innerHTML = `
+                    <h2>${item.subject}</h2>
+                    <p>Description of ${item.subject} study material.</p>
+                    <a href="${item.url}"" target="new_blank" download="${item.subject}.pdf">Download</a>
+                `;
+                materialContainer.appendChild(card);
+            });
+        } else {
+            // Display a message if no study materials are available for the selected class
+            const message = document.createElement("p");
+            message.textContent = "No study materials available for this class.";
+            materialContainer.appendChild(message);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Academics</title>
+    <link
+    rel="shortcut icon"
+    href="assets/images/logowbg.jpg"
+    type="image/x-icon"
+  />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+      }
+
+      .dropdown {
+        margin-bottom: 20px;
+      }
+
+      .dropdown select {
+        padding: 10px;
+        width: 100%;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+
+      .dropdown select:focus {
+        border-color: #4caf50;
+      }
+
+      .card-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .card {
+        width: 30%;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .card h2 {
+        color: #333;
+      }
+
+      .card p {
+        color: #666;
+      }
+
+      .card a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #4caf50;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+
+      .card a:hover {
+        color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Academics</h1>
+      <div class="dropdown">
+        <select id="classSelect">
+          <option value="">Select Class</option>
+          <option value="1">Class 1</option>
+          <option value="2">Class 2</option>
+          <option value="3">Class 3</option>
+          <option value="4">Class 4</option>
+          <option value="5">Class 5</option>
+          <option value="6">Class 6</option>
+          <option value="7">Class 7</option>
+          <option value="8">Class 8</option>
+          <option value="9">Class 9</option>
+          <option value="10">Class 10</option>
+          <option value="11">Class 11</option>
+          <option value="12">Class 12</option>
+        </select>
+      </div>
+      <div class="dropdown">
+        <select id="languageSelect">
+          <option value="">Medium of I</option>
+          <option value="english">English</option>
+          <option value="tamil">Tamil</option>
+          <option value="hindi">Hindi</option>
+        </select>
+      </div>
+      <div class="dropdown">
+        <select id="boardSelect">
+          <option value="">Select Board</option>
+          <option value="state">State Board</option>
+        </select>
+      </div>
+      <div class="card-container">
+        <div class="card" id="studyMaterial">
+          <h2>Study Material</h2>
+          <p>Get access to study materials.</p>
+          <a href="#">Explore</a>
+        </div>
+        <div class="card" id="mockTest">
+          <h2>Mock Test</h2>
+          <p>Take mock tests to prepare for exams.</p>
+          <a href="#">Start Test</a>
+        </div>
+        <div class="card" id="progress">
+          <h2>Your Progress</h2>
+          <p>Track your academic progress.</p>
+          <a href="#">View Progress</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Event listeners for the cards
+      document
+        .getElementById("studyMaterial")
+        .addEventListener("click", function () {
+          // Get selected class, language, and board
+          const selectedClass = document.getElementById("classSelect").value;
+          const selectedLanguage =
+            document.getElementById("languageSelect").value;
+          const selectedBoard = document.getElementById("boardSelect").value;
+
+          // Check if all dropdowns are selected
+          if (selectedClass && selectedLanguage && selectedBoard) {
+            // Redirect to the study materials page with selected parameters
+            window.location.href = `studymaterials.html?class=${selectedClass}&language=${selectedLanguage}&board=${selectedBoard}`;
+          } else {
+            alert("Please select class, language, and board.");
+          }
+        });
+
+      document
+        .getElementById("mockTest")
+        .addEventListener("click", function () {
+          // Redirect to the mock test page
+          window.location.href = "mocktest.html";
+        });
+
+      document
+        .getElementById("progress")
+        .addEventListener("click", function () {
+          // Redirect to the progress tracking page
+          window.location.href = "progress.html";
+        });
+    </script>
+  </body>
+</html>

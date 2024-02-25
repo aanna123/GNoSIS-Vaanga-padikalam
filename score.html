@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Score</title>
+    <link rel="stylesheet" href="test.css" />
+    <link
+    rel="shortcut icon"
+    href="assets/images/logowbg.jpg"
+    type="image/x-icon"
+  />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      .question {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .question h3 {
+        margin-top: 0;
+        color: #333;
+      }
+
+      .options {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .options li {
+        margin-bottom: 10px;
+      }
+
+      .correct {
+        color: #4caf50; /* Green color for correct answers */
+      }
+
+      .wrong {
+        color: #f44336; /* Red color for wrong answers */
+      }
+
+      .correct::before {
+        content: "\2714 "; /* Unicode check mark */
+        color: #4caf50; /* Green color for correct answers */
+        font-weight: bold;
+      }
+
+      .wrong::before {
+        content: "\2718 "; /* Unicode cross mark */
+        color: #f44336; /* Red color for wrong answers */
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Test Score: <span id="scoreDisplay">0/0</span></h1>
+    <div id="testSection" class="test-section">
+      <!-- Test questions will be loaded here dynamically -->
+    </div>
+    <a href="index.html"><button style="cursor: pointer">Back</button></a>
+
+    <script src="tests.js"></script>
+    <script>
+      // Parse query parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const correctAnswers = parseInt(urlParams.get("correct")) || 0;
+      const totalQuestions = testQuestions.length; // Get the total number of questions from the testQuestions array
+      const totalAnswered = testQuestions.filter((_, index) =>
+          urlParams.get(`answer${index}`) !== null
+      ).length;
+
+      // Display score
+      const scoreDisplay = document.getElementById("scoreDisplay");
+      scoreDisplay.textContent = `${correctAnswers}/${totalQuestions}`;
+
+      // Display questions with correct and wrong answers
+      const testSection = document.getElementById("testSection");
+      testQuestions.forEach((question, index) => {
+        const selectedAnswer = urlParams.get(`answer${index}`);
+        const questionDiv = document.createElement("div");
+        questionDiv.classList.add("question");
+        const questionHeader = document.createElement("h3");
+        questionHeader.textContent = `Question ${index + 1}: ${question.text}`;
+        questionDiv.appendChild(questionHeader);
+        const optionsList = document.createElement("ul");
+        optionsList.classList.add("options");
+        question.options.forEach((option) => {
+          const optionItem = document.createElement("li");
+          optionItem.textContent = option;
+          if (option === question.answer) {
+            optionItem.classList.add("correct");
+            if (option === selectedAnswer) {
+              optionItem.innerHTML += '<span class="correct"> ✓</span>';
+            }
+          } else if (option === selectedAnswer) {
+            optionItem.classList.add("wrong");
+            optionItem.innerHTML += '<span class="wrong"> ✗</span>';
+            const correctOptionIndex = question.options.findIndex(
+              (opt) => opt !== question.answer
+            );
+            if (correctOptionIndex !== -1) {
+              const correctOption = optionsList.childNodes[correctOptionIndex];
+              correctOption.innerHTML += '<span class="correct"> ✓</span>';
+            }
+          }
+          optionsList.appendChild(optionItem);
+        });
+        questionDiv.appendChild(optionsList);
+        testSection.appendChild(questionDiv);
+      });
+
+      // Display total number of questions, attended, and correct answers
+      const statsDisplay = document.createElement("p");
+      statsDisplay.textContent = `Total Questions: ${totalQuestions}, Attended: ${totalAnswered}, Correct Answers: ${correctAnswers}`;
+      testSection.appendChild(statsDisplay);
+    </script>
+  </body>
+</html>

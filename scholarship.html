@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gnoship Enrollment </title>
+    <link
+      rel="icon"
+      href="assets/images/logowbg.jpg"
+      type="image/png"
+    />
+    <link rel="stylesheet" href="scholarship.css" />
+      
+  </head>
+  <body onload="openModal()">
+    <!-- Automatically open modal when the page loads -->
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 class="logo">Gnoship</h2>
+        <div id="enrollmentFormContainer">
+          <h2>Enrollment Form</h2>
+          <form id="enrollmentForm" onsubmit="submitForm(event)">
+            <label for="name">Name:</label><br />
+            <input type="text" id="name" name="name" required /><br />
+            <label for="email">Email:</label><br />
+            <input type="email" id="email" name="email" required /><br />
+            <label for="dob">Date of Birth:</label><br />
+            <input type="date" id="dob" name="dob" required /><br />
+            <label for="school">School:</label><br />
+            <input type="text" id="school" name="school" required /><br /><br />
+            <input type="submit" value="Submit" /> <a href="index.html" style="display: inline-block; text-decoration: none;">
+              <button style="cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 4px; padding: 10px 20px; margin-right: 10px;">
+                Back
+              </button>
+            </a>
+            
+          </form>
+        </div>
+        <div id="confirmationMessage" style="display: none">
+          <h2>Registration Successful!</h2>
+          <p>You have successfully registered for the Gnoship program.</p>
+          <div class="cards-container">
+            <div class="card">
+                <h3>Attend a Test</h3>
+              <a href="test.html">  <button>Take Test</button></a>
+            </div>
+            <div class="card">
+                <h3>Mentor Session for a Week</h3>
+                <button>Start Session</button>
+            </div>
+            <div class="card">
+                <h3>Mock Test</h3>
+               <button>Take Mock Test</button>
+            <div class="card">
+                <h3>Final Test</h3>
+                <button>Take Final Test</button>
+            </div>
+        </div>
+    </div>
+<a href="index.html" style="display: inline-block; text-decoration: none;">
+          <button style="cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 4px; padding: 10px 20px; margin-right: 10px;">
+            Back
+          </button>
+        </a>
+    <script>
+      function openModal() {
+        document.getElementById("myModal").style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+
+      function submitForm(event) {
+        event.preventDefault(); // Prevent default form submission
+        // Retrieve form data
+        var formData = new FormData(document.getElementById("enrollmentForm"));
+        // Create profile
+        var profile = {};
+        formData.forEach(function (value, key) {
+          profile[key] = value;
+        });
+        // You can send the profile data to a backend server for further processing or handle it here
+        console.log(profile);
+        // Show confirmation message and options
+        document.getElementById("enrollmentFormContainer").style.display =
+          "none";
+        document.getElementById("confirmationMessage").style.display = "block";
+      }
+      
+    </script>
+  </body>
+</html>
